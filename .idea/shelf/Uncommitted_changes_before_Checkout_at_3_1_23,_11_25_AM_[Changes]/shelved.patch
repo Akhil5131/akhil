@@ -1,0 +1,104 @@
+Index: .idea/encodings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"Encoding\">\n    <file url=\"file://$PROJECT_DIR$/src/main/java\" charset=\"UTF-8\" />\n    <file url=\"file://$PROJECT_DIR$/src/main/resources\" charset=\"UTF-8\" />\n  </component>\n</project>
+===================================================================
+diff --git a/.idea/encodings.xml b/.idea/encodings.xml
+--- a/.idea/encodings.xml	
++++ b/.idea/encodings.xml	
+@@ -2,6 +2,8 @@
+ <project version="4">
+   <component name="Encoding">
+     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
++    <file url="file://$PROJECT_DIR$/src/main/java/Java-8-stream-api/src/main/java" charset="UTF-8" />
++    <file url="file://$PROJECT_DIR$/src/main/java/Java-8-stream-api/src/main/resources" charset="UTF-8" />
+     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/main/java/Optional/OptionalDemo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Optional;\n\nimport java.util.Optional;\n\npublic class OptionalDemo {\n    public static void main(String[] args) {\n        String email = \"akhil@gmail.com\";\n\n        //off , empty,ofNullable\n        /*Optional<Object> emptyOptional = Optional.empty();\n        System.out.println(emptyOptional);\n\n        Optional<String> emialOptional=Optional.of(\"email\");\n        System.out.println(emialOptional);*/\n\n        Optional<String> stringOptional = Optional.ofNullable(email);\n        String defaultOptional = stringOptional.orElse(null);\n       System.out.println(defaultOptional);\n\n        String defaultOptional2 = stringOptional.orElseGet(()->\"default@gmail.com\");\n        System.out.println(defaultOptional2);\n\n        String optionalObject = stringOptional.orElseThrow(() -> new IllegalArgumentException(\"Email is not exist\"));\n        System.out.println(optionalObject);\n\n        Optional<String> gender = Optional.of(\"male\");\n        Optional<String> emptyOptional = Optional.empty();\n\n        gender.ifPresent((s) -> System.out.println(\"value is present\"));\n        emptyOptional.ifPresent((s) -> System.out.println(\"no value present\"));\n       /* if(stringOptional.isPresent()){\n            System.out.println(stringOptional.get());\n        }else{\n            System.out.println(\"no value present\");\n        }*/\n        String result = \"abc\";\n        if(result != null && result.contains(\"abc\")){\n            System.out.println(result);\n        }\n        Optional<String> optionalstr = Optional.of(result);\n        optionalstr.filter(res -> res.contains(\"abc\"));\n        //.ifPresent((res)-> System.out.println(res));\n\n    }\n}\n
+===================================================================
+diff --git a/src/main/java/Optional/OptionalDemo.java b/src/main/java/Optional/OptionalDemo.java
+--- a/src/main/java/Optional/OptionalDemo.java	
++++ b/src/main/java/Optional/OptionalDemo.java	
+@@ -10,7 +10,7 @@
+         /*Optional<Object> emptyOptional = Optional.empty();
+         System.out.println(emptyOptional);
+ 
+-        Optional<String> emialOptional=Optional.of("email");
++        Optional<String> emialOptional=Optional.of(email);
+         System.out.println(emialOptional);*/
+ 
+         Optional<String> stringOptional = Optional.ofNullable(email);
+@@ -20,6 +20,7 @@
+         String defaultOptional2 = stringOptional.orElseGet(()->"default@gmail.com");
+         System.out.println(defaultOptional2);
+ 
++
+         String optionalObject = stringOptional.orElseThrow(() -> new IllegalArgumentException("Email is not exist"));
+         System.out.println(optionalObject);
+ 
+@@ -28,18 +29,19 @@
+ 
+         gender.ifPresent((s) -> System.out.println("value is present"));
+         emptyOptional.ifPresent((s) -> System.out.println("no value present"));
+-       /* if(stringOptional.isPresent()){
+-            System.out.println(stringOptional.get());
+-        }else{
+-            System.out.println("no value present");
+-        }*/
++//        if(stringOptional.isPresent()){
++//            System.out.println(stringOptional.get());
++//        }else{
++//            System.out.println("no value present");
++//        }
+         String result = "abc";
+         if(result != null && result.contains("abc")){
+             System.out.println(result);
+         }
+-        Optional<String> optionalstr = Optional.of(result);
+-        optionalstr.filter(res -> res.contains("abc"));
+-        //.ifPresent((res)-> System.out.println(res));
++       Optional<String> optionalstr = Optional.of(result);
++    optionalstr.filter(res -> res.contains("abc"))
++            .map(String::trim)
++.ifPresent((res)-> System.out.println(res));
+ 
+     }
+ }
+Index: src/main/java/lambda/RunnableLambdaExample.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package lambda;\n\nclass ThreadDemo2 implements Runnable{\n\n    @Override\n    public void run() {\n        System.out.println(\"run method is called .....\");\n    }\n}\npublic class RunnableLambdaExample {\n    public static void main(String[] args) {\n        //Thread thread = new Thread(new ThreadDemo2());\n        //thread.start();\n\n         Runnable run1 =() ->\n            System.out.println(\"run method is called  using lambda...\");\n       run1.run();\n    }\n    }\n
+===================================================================
+diff --git a/src/main/java/lambda/RunnableLambdaExample.java b/src/main/java/lambda/RunnableLambdaExample.java
+--- a/src/main/java/lambda/RunnableLambdaExample.java	
++++ b/src/main/java/lambda/RunnableLambdaExample.java	
+@@ -4,7 +4,7 @@
+ 
+     @Override
+     public void run() {
+-        System.out.println("run method is called .....");
++        System.out.println("run method is 2 ..........");
+     }
+ }
+ public class RunnableLambdaExample {
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\n  <component name=\"MavenProjectsManager\">\n    <option name=\"originalFiles\">\n      <list>\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_18\" default=\"true\" project-jdk-name=\"openjdk-18\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/out\" />\n  </component>\n</project>
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	
++++ b/.idea/misc.xml	
+@@ -5,6 +5,7 @@
+     <option name="originalFiles">
+       <list>
+         <option value="$PROJECT_DIR$/pom.xml" />
++        <option value="$PROJECT_DIR$/Java-8-stream-api/pom.xml" />
+       </list>
+     </option>
+   </component>

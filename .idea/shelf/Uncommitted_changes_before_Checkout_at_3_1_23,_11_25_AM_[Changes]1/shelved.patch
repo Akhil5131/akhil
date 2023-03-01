@@ -1,0 +1,1379 @@
+Index: src/main/java/Java-8-stream-api/pom.xml
+===================================================================
+diff --git a/src/main/java/Java-8-stream-api/pom.xml b/src/main/java/Java-8-stream-api/pom.xml
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Java-8-stream-api/pom.xml	
+@@ -0,0 +1,77 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project xmlns="http://maven.apache.org/POM/4.0.0"
++         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
++    <modelVersion>4.0.0</modelVersion>
++
++    <groupId>com.example</groupId>
++    <artifactId>Java-8-stream-api</artifactId>
++    <version>1.0-SNAPSHOT</version>
++    <name>Java-8-stream-api</name>
++
++    <properties>
++        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
++        <junit.version>5.9.1</junit.version>
++    </properties>
++
++    <dependencies>
++        <dependency>
++            <groupId>org.openjfx</groupId>
++            <artifactId>javafx-controls</artifactId>
++            <version>18.0.2</version>
++        </dependency>
++        <dependency>
++            <groupId>org.openjfx</groupId>
++            <artifactId>javafx-fxml</artifactId>
++            <version>18.0.2</version>
++        </dependency>
++
++        <dependency>
++            <groupId>org.junit.jupiter</groupId>
++            <artifactId>junit-jupiter-api</artifactId>
++            <version>${junit.version}</version>
++            <scope>test</scope>
++        </dependency>
++        <dependency>
++            <groupId>org.junit.jupiter</groupId>
++            <artifactId>junit-jupiter-engine</artifactId>
++            <version>${junit.version}</version>
++            <scope>test</scope>
++        </dependency>
++    </dependencies>
++
++    <build>
++        <plugins>
++            <plugin>
++                <groupId>org.apache.maven.plugins</groupId>
++                <artifactId>maven-compiler-plugin</artifactId>
++                <version>3.10.1</version>
++                <configuration>
++                    <source>18</source>
++                    <target>18</target>
++                </configuration>
++            </plugin>
++            <plugin>
++                <groupId>org.openjfx</groupId>
++                <artifactId>javafx-maven-plugin</artifactId>
++                <version>0.0.8</version>
++                <executions>
++                    <execution>
++                        <!-- Default configuration for running with: mvn clean javafx:run -->
++                        <id>default-cli</id>
++                        <configuration>
++                            <mainClass>com.example.java8streamapi/com.example.java8streamapi.HelloApplication
++                            </mainClass>
++                            <launcher>app</launcher>
++                            <jlinkZipName>app</jlinkZipName>
++                            <jlinkImageName>app</jlinkImageName>
++                            <noManPages>true</noManPages>
++                            <stripDebug>true</stripDebug>
++                            <noHeaderFiles>true</noHeaderFiles>
++                        </configuration>
++                    </execution>
++                </executions>
++            </plugin>
++        </plugins>
++    </build>
++</project>
+\ No newline at end of file
+Index: src/main/java/DefaultMethod/defaultMethod.java
+===================================================================
+diff --git a/src/main/java/DefaultMethod/defaultMethod.java b/src/main/java/DefaultMethod/defaultMethod.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/DefaultMethod/defaultMethod.java	
+@@ -0,0 +1,51 @@
++package DefaultMethod;
++interface Vehicle{
++    String getBranded();
++
++
++    String sppedUp();
++
++    String slowDown();
++
++
++    default String trunAlarmOn(){
++        return "turning vehicle alarm on";
++    }
++
++    default String turnAlarmOff(){
++        return "turning vehicle alarm off";
++    }
++}
++
++class car implements Vehicle{
++
++    @Override
++    public String getBranded() {
++        return"BMW";
++    }
++
++    @Override
++    public String sppedUp() {
++        return "The car is speeding";
++    }
++
++    @Override
++    public String slowDown() {
++        return "The car is slowing Down";
++    }
++}
++public class defaultMethod {
++    public static void main(String[] args) {
++        Vehicle vehicle = new car();
++        System.out.println(vehicle.getBranded());
++        System.out.println(vehicle.slowDown());
++        System.out.println(vehicle.sppedUp());
++
++        System.out.println(vehicle.turnAlarmOff());
++        System.out.println(vehicle.trunAlarmOn());
++
++
++    }
++
++
++}
+Index: .idea/uiDesigner.xml
+===================================================================
+diff --git a/.idea/uiDesigner.xml b/.idea/uiDesigner.xml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/uiDesigner.xml	
+@@ -0,0 +1,124 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Palette2">
++    <group name="Swing">
++      <item class="com.intellij.uiDesigner.HSpacer" tooltip-text="Horizontal Spacer" icon="/com/intellij/uiDesigner/icons/hspacer.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="1" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="com.intellij.uiDesigner.VSpacer" tooltip-text="Vertical Spacer" icon="/com/intellij/uiDesigner/icons/vspacer.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="1" anchor="0" fill="2" />
++      </item>
++      <item class="javax.swing.JPanel" icon="/com/intellij/uiDesigner/icons/panel.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JScrollPane" icon="/com/intellij/uiDesigner/icons/scrollPane.svg" removable="false" auto-create-binding="false" can-attach-label="true">
++        <default-constraints vsize-policy="7" hsize-policy="7" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JButton" icon="/com/intellij/uiDesigner/icons/button.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="0" fill="1" />
++        <initial-values>
++          <property name="text" value="Button" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JRadioButton" icon="/com/intellij/uiDesigner/icons/radioButton.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="RadioButton" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JCheckBox" icon="/com/intellij/uiDesigner/icons/checkBox.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="CheckBox" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JLabel" icon="/com/intellij/uiDesigner/icons/label.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="Label" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JTextField" icon="/com/intellij/uiDesigner/icons/textField.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JPasswordField" icon="/com/intellij/uiDesigner/icons/passwordField.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JFormattedTextField" icon="/com/intellij/uiDesigner/icons/formattedTextField.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextArea" icon="/com/intellij/uiDesigner/icons/textArea.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextPane" icon="/com/intellij/uiDesigner/icons/textPane.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JEditorPane" icon="/com/intellij/uiDesigner/icons/editorPane.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JComboBox" icon="/com/intellij/uiDesigner/icons/comboBox.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="2" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JTable" icon="/com/intellij/uiDesigner/icons/table.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JList" icon="/com/intellij/uiDesigner/icons/list.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="2" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTree" icon="/com/intellij/uiDesigner/icons/tree.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTabbedPane" icon="/com/intellij/uiDesigner/icons/tabbedPane.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSplitPane" icon="/com/intellij/uiDesigner/icons/splitPane.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSpinner" icon="/com/intellij/uiDesigner/icons/spinner.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSlider" icon="/com/intellij/uiDesigner/icons/slider.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSeparator" icon="/com/intellij/uiDesigner/icons/separator.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JProgressBar" icon="/com/intellij/uiDesigner/icons/progressbar.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JToolBar" icon="/com/intellij/uiDesigner/icons/toolbar.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1">
++          <preferred-size width="-1" height="20" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JToolBar$Separator" icon="/com/intellij/uiDesigner/icons/toolbarSeparator.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JScrollBar" icon="/com/intellij/uiDesigner/icons/scrollbar.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="0" anchor="0" fill="2" />
++      </item>
++    </group>
++  </component>
++</project>
+\ No newline at end of file
+Index: src/main/java/Java-8-stream-api/mvnw
+===================================================================
+diff --git a/src/main/java/Java-8-stream-api/mvnw b/src/main/java/Java-8-stream-api/mvnw
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Java-8-stream-api/mvnw	
+@@ -0,0 +1,316 @@
++#!/bin/sh
++# ----------------------------------------------------------------------------
++# Licensed to the Apache Software Foundation (ASF) under one
++# or more contributor license agreements.  See the NOTICE file
++# distributed with this work for additional information
++# regarding copyright ownership.  The ASF licenses this file
++# to you under the Apache License, Version 2.0 (the
++# "License"); you may not use this file except in compliance
++# with the License.  You may obtain a copy of the License at
++#
++#    https://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing,
++# software distributed under the License is distributed on an
++# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
++# KIND, either express or implied.  See the License for the
++# specific language governing permissions and limitations
++# under the License.
++# ----------------------------------------------------------------------------
++
++# ----------------------------------------------------------------------------
++# Maven Start Up Batch script
++#
++# Required ENV vars:
++# ------------------
++#   JAVA_HOME - location of a JDK home dir
++#
++# Optional ENV vars
++# -----------------
++#   M2_HOME - location of maven2's installed home dir
++#   MAVEN_OPTS - parameters passed to the Java VM when running Maven
++#     e.g. to debug Maven itself, use
++#       set MAVEN_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000
++#   MAVEN_SKIP_RC - flag to disable loading of mavenrc files
++# ----------------------------------------------------------------------------
++
++if [ -z "$MAVEN_SKIP_RC" ] ; then
++
++  if [ -f /usr/local/etc/mavenrc ] ; then
++    . /usr/local/etc/mavenrc
++  fi
++
++  if [ -f /etc/mavenrc ] ; then
++    . /etc/mavenrc
++  fi
++
++  if [ -f "$HOME/.mavenrc" ] ; then
++    . "$HOME/.mavenrc"
++  fi
++
++fi
++
++# OS specific support.  $var _must_ be set to either true or false.
++cygwin=false;
++darwin=false;
++mingw=false
++case "`uname`" in
++  CYGWIN*) cygwin=true ;;
++  MINGW*) mingw=true;;
++  Darwin*) darwin=true
++    # Use /usr/libexec/java_home if available, otherwise fall back to /Library/Java/Home
++    # See https://developer.apple.com/library/mac/qa/qa1170/_index.html
++    if [ -z "$JAVA_HOME" ]; then
++      if [ -x "/usr/libexec/java_home" ]; then
++        export JAVA_HOME="`/usr/libexec/java_home`"
++      else
++        export JAVA_HOME="/Library/Java/Home"
++      fi
++    fi
++    ;;
++esac
++
++if [ -z "$JAVA_HOME" ] ; then
++  if [ -r /etc/gentoo-release ] ; then
++    JAVA_HOME=`java-config --jre-home`
++  fi
++fi
++
++if [ -z "$M2_HOME" ] ; then
++  ## resolve links - $0 may be a link to maven's home
++  PRG="$0"
++
++  # need this for relative symlinks
++  while [ -h "$PRG" ] ; do
++    ls=`ls -ld "$PRG"`
++    link=`expr "$ls" : '.*-> \(.*\)$'`
++    if expr "$link" : '/.*' > /dev/null; then
++      PRG="$link"
++    else
++      PRG="`dirname "$PRG"`/$link"
++    fi
++  done
++
++  saveddir=`pwd`
++
++  M2_HOME=`dirname "$PRG"`/..
++
++  # make it fully qualified
++  M2_HOME=`cd "$M2_HOME" && pwd`
++
++  cd "$saveddir"
++  # echo Using m2 at $M2_HOME
++fi
++
++# For Cygwin, ensure paths are in UNIX format before anything is touched
++if $cygwin ; then
++  [ -n "$M2_HOME" ] &&
++    M2_HOME=`cygpath --unix "$M2_HOME"`
++  [ -n "$JAVA_HOME" ] &&
++    JAVA_HOME=`cygpath --unix "$JAVA_HOME"`
++  [ -n "$CLASSPATH" ] &&
++    CLASSPATH=`cygpath --path --unix "$CLASSPATH"`
++fi
++
++# For Mingw, ensure paths are in UNIX format before anything is touched
++if $mingw ; then
++  [ -n "$M2_HOME" ] &&
++    M2_HOME="`(cd "$M2_HOME"; pwd)`"
++  [ -n "$JAVA_HOME" ] &&
++    JAVA_HOME="`(cd "$JAVA_HOME"; pwd)`"
++fi
++
++if [ -z "$JAVA_HOME" ]; then
++  javaExecutable="`which javac`"
++  if [ -n "$javaExecutable" ] && ! [ "`expr \"$javaExecutable\" : '\([^ ]*\)'`" = "no" ]; then
++    # readlink(1) is not available as standard on Solaris 10.
++    readLink=`which readlink`
++    if [ ! `expr "$readLink" : '\([^ ]*\)'` = "no" ]; then
++      if $darwin ; then
++        javaHome="`dirname \"$javaExecutable\"`"
++        javaExecutable="`cd \"$javaHome\" && pwd -P`/javac"
++      else
++        javaExecutable="`readlink -f \"$javaExecutable\"`"
++      fi
++      javaHome="`dirname \"$javaExecutable\"`"
++      javaHome=`expr "$javaHome" : '\(.*\)/bin'`
++      JAVA_HOME="$javaHome"
++      export JAVA_HOME
++    fi
++  fi
++fi
++
++if [ -z "$JAVACMD" ] ; then
++  if [ -n "$JAVA_HOME"  ] ; then
++    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
++      # IBM's JDK on AIX uses strange locations for the executables
++      JAVACMD="$JAVA_HOME/jre/sh/java"
++    else
++      JAVACMD="$JAVA_HOME/bin/java"
++    fi
++  else
++    JAVACMD="`\\unset -f command; \\command -v java`"
++  fi
++fi
++
++if [ ! -x "$JAVACMD" ] ; then
++  echo "Error: JAVA_HOME is not defined correctly." >&2
++  echo "  We cannot execute $JAVACMD" >&2
++  exit 1
++fi
++
++if [ -z "$JAVA_HOME" ] ; then
++  echo "Warning: JAVA_HOME environment variable is not set."
++fi
++
++CLASSWORLDS_LAUNCHER=org.codehaus.plexus.classworlds.launcher.Launcher
++
++# traverses directory structure from process work directory to filesystem root
++# first directory with .mvn subdirectory is considered project base directory
++find_maven_basedir() {
++
++  if [ -z "$1" ]
++  then
++    echo "Path not specified to find_maven_basedir"
++    return 1
++  fi
++
++  basedir="$1"
++  wdir="$1"
++  while [ "$wdir" != '/' ] ; do
++    if [ -d "$wdir"/.mvn ] ; then
++      basedir=$wdir
++      break
++    fi
++    # workaround for JBEAP-8937 (on Solaris 10/Sparc)
++    if [ -d "${wdir}" ]; then
++      wdir=`cd "$wdir/.."; pwd`
++    fi
++    # end of workaround
++  done
++  echo "${basedir}"
++}
++
++# concatenates all lines of a file
++concat_lines() {
++  if [ -f "$1" ]; then
++    echo "$(tr -s '\n' ' ' < "$1")"
++  fi
++}
++
++BASE_DIR=`find_maven_basedir "$(pwd)"`
++if [ -z "$BASE_DIR" ]; then
++  exit 1;
++fi
++
++##########################################################################################
++# Extension to allow automatically downloading the maven-wrapper.jar from Maven-central
++# This allows using the maven wrapper in projects that prohibit checking in binary data.
++##########################################################################################
++if [ -r "$BASE_DIR/.mvn/wrapper/maven-wrapper.jar" ]; then
++    if [ "$MVNW_VERBOSE" = true ]; then
++      echo "Found .mvn/wrapper/maven-wrapper.jar"
++    fi
++else
++    if [ "$MVNW_VERBOSE" = true ]; then
++      echo "Couldn't find .mvn/wrapper/maven-wrapper.jar, downloading it ..."
++    fi
++    if [ -n "$MVNW_REPOURL" ]; then
++      jarUrl="$MVNW_REPOURL/org/apache/maven/wrapper/maven-wrapper/3.1.0/maven-wrapper-3.1.0.jar"
++    else
++      jarUrl="https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.1.0/maven-wrapper-3.1.0.jar"
++    fi
++    while IFS="=" read key value; do
++      case "$key" in (wrapperUrl) jarUrl="$value"; break ;;
++      esac
++    done < "$BASE_DIR/.mvn/wrapper/maven-wrapper.properties"
++    if [ "$MVNW_VERBOSE" = true ]; then
++      echo "Downloading from: $jarUrl"
++    fi
++    wrapperJarPath="$BASE_DIR/.mvn/wrapper/maven-wrapper.jar"
++    if $cygwin; then
++      wrapperJarPath=`cygpath --path --windows "$wrapperJarPath"`
++    fi
++
++    if command -v wget > /dev/null; then
++        if [ "$MVNW_VERBOSE" = true ]; then
++          echo "Found wget ... using wget"
++        fi
++        if [ -z "$MVNW_USERNAME" ] || [ -z "$MVNW_PASSWORD" ]; then
++            wget "$jarUrl" -O "$wrapperJarPath" || rm -f "$wrapperJarPath"
++        else
++            wget --http-user=$MVNW_USERNAME --http-password=$MVNW_PASSWORD "$jarUrl" -O "$wrapperJarPath" || rm -f "$wrapperJarPath"
++        fi
++    elif command -v curl > /dev/null; then
++        if [ "$MVNW_VERBOSE" = true ]; then
++          echo "Found curl ... using curl"
++        fi
++        if [ -z "$MVNW_USERNAME" ] || [ -z "$MVNW_PASSWORD" ]; then
++            curl -o "$wrapperJarPath" "$jarUrl" -f
++        else
++            curl --user $MVNW_USERNAME:$MVNW_PASSWORD -o "$wrapperJarPath" "$jarUrl" -f
++        fi
++
++    else
++        if [ "$MVNW_VERBOSE" = true ]; then
++          echo "Falling back to using Java to download"
++        fi
++        javaClass="$BASE_DIR/.mvn/wrapper/MavenWrapperDownloader.java"
++        # For Cygwin, switch paths to Windows format before running javac
++        if $cygwin; then
++          javaClass=`cygpath --path --windows "$javaClass"`
++        fi
++        if [ -e "$javaClass" ]; then
++            if [ ! -e "$BASE_DIR/.mvn/wrapper/MavenWrapperDownloader.class" ]; then
++                if [ "$MVNW_VERBOSE" = true ]; then
++                  echo " - Compiling MavenWrapperDownloader.java ..."
++                fi
++                # Compiling the Java class
++                ("$JAVA_HOME/bin/javac" "$javaClass")
++            fi
++            if [ -e "$BASE_DIR/.mvn/wrapper/MavenWrapperDownloader.class" ]; then
++                # Running the downloader
++                if [ "$MVNW_VERBOSE" = true ]; then
++                  echo " - Running MavenWrapperDownloader.java ..."
++                fi
++                ("$JAVA_HOME/bin/java" -cp .mvn/wrapper MavenWrapperDownloader "$MAVEN_PROJECTBASEDIR")
++            fi
++        fi
++    fi
++fi
++##########################################################################################
++# End of extension
++##########################################################################################
++
++export MAVEN_PROJECTBASEDIR=${MAVEN_BASEDIR:-"$BASE_DIR"}
++if [ "$MVNW_VERBOSE" = true ]; then
++  echo $MAVEN_PROJECTBASEDIR
++fi
++MAVEN_OPTS="$(concat_lines "$MAVEN_PROJECTBASEDIR/.mvn/jvm.config") $MAVEN_OPTS"
++
++# For Cygwin, switch paths to Windows format before running java
++if $cygwin; then
++  [ -n "$M2_HOME" ] &&
++    M2_HOME=`cygpath --path --windows "$M2_HOME"`
++  [ -n "$JAVA_HOME" ] &&
++    JAVA_HOME=`cygpath --path --windows "$JAVA_HOME"`
++  [ -n "$CLASSPATH" ] &&
++    CLASSPATH=`cygpath --path --windows "$CLASSPATH"`
++  [ -n "$MAVEN_PROJECTBASEDIR" ] &&
++    MAVEN_PROJECTBASEDIR=`cygpath --path --windows "$MAVEN_PROJECTBASEDIR"`
++fi
++
++# Provide a "standardized" way to retrieve the CLI args that will
++# work with both Windows and non-Windows executions.
++MAVEN_CMD_LINE_ARGS="$MAVEN_CONFIG $@"
++export MAVEN_CMD_LINE_ARGS
++
++WRAPPER_LAUNCHER=org.apache.maven.wrapper.MavenWrapperMain
++
++exec "$JAVACMD" \
++  $MAVEN_OPTS \
++  $MAVEN_DEBUG_OPTS \
++  -classpath "$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.jar" \
++  "-Dmaven.home=${M2_HOME}" \
++  "-Dmaven.multiModuleProjectDirectory=${MAVEN_PROJECTBASEDIR}" \
++  ${WRAPPER_LAUNCHER} $MAVEN_CONFIG "$@"
+Index: src/main/java/Java-8-stream-api/.mvn/wrapper/maven-wrapper.properties
+===================================================================
+diff --git a/src/main/java/Java-8-stream-api/.mvn/wrapper/maven-wrapper.properties b/src/main/java/Java-8-stream-api/.mvn/wrapper/maven-wrapper.properties
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Java-8-stream-api/.mvn/wrapper/maven-wrapper.properties	
+@@ -0,0 +1,2 @@
++distributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.8.5/apache-maven-3.8.5-bin.zip
++wrapperUrl=https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.1.0/maven-wrapper-3.1.0.jar
+\ No newline at end of file
+Index: src/main/java/Java-8-stream-api/mvnw.cmd
+===================================================================
+diff --git a/src/main/java/Java-8-stream-api/mvnw.cmd b/src/main/java/Java-8-stream-api/mvnw.cmd
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Java-8-stream-api/mvnw.cmd	
+@@ -0,0 +1,188 @@
++@REM ----------------------------------------------------------------------------
++@REM Licensed to the Apache Software Foundation (ASF) under one
++@REM or more contributor license agreements.  See the NOTICE file
++@REM distributed with this work for additional information
++@REM regarding copyright ownership.  The ASF licenses this file
++@REM to you under the Apache License, Version 2.0 (the
++@REM "License"); you may not use this file except in compliance
++@REM with the License.  You may obtain a copy of the License at
++@REM
++@REM    https://www.apache.org/licenses/LICENSE-2.0
++@REM
++@REM Unless required by applicable law or agreed to in writing,
++@REM software distributed under the License is distributed on an
++@REM "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
++@REM KIND, either express or implied.  See the License for the
++@REM specific language governing permissions and limitations
++@REM under the License.
++@REM ----------------------------------------------------------------------------
++
++@REM ----------------------------------------------------------------------------
++@REM Maven Start Up Batch script
++@REM
++@REM Required ENV vars:
++@REM JAVA_HOME - location of a JDK home dir
++@REM
++@REM Optional ENV vars
++@REM M2_HOME - location of maven2's installed home dir
++@REM MAVEN_BATCH_ECHO - set to 'on' to enable the echoing of the batch commands
++@REM MAVEN_BATCH_PAUSE - set to 'on' to wait for a keystroke before ending
++@REM MAVEN_OPTS - parameters passed to the Java VM when running Maven
++@REM     e.g. to debug Maven itself, use
++@REM set MAVEN_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000
++@REM MAVEN_SKIP_RC - flag to disable loading of mavenrc files
++@REM ----------------------------------------------------------------------------
++
++@REM Begin all REM lines with '@' in case MAVEN_BATCH_ECHO is 'on'
++@echo off
++@REM set title of command window
++title %0
++@REM enable echoing by setting MAVEN_BATCH_ECHO to 'on'
++@if "%MAVEN_BATCH_ECHO%" == "on"  echo %MAVEN_BATCH_ECHO%
++
++@REM set %HOME% to equivalent of $HOME
++if "%HOME%" == "" (set "HOME=%HOMEDRIVE%%HOMEPATH%")
++
++@REM Execute a user defined script before this one
++if not "%MAVEN_SKIP_RC%" == "" goto skipRcPre
++@REM check for pre script, once with legacy .bat ending and once with .cmd ending
++if exist "%USERPROFILE%\mavenrc_pre.bat" call "%USERPROFILE%\mavenrc_pre.bat" %*
++if exist "%USERPROFILE%\mavenrc_pre.cmd" call "%USERPROFILE%\mavenrc_pre.cmd" %*
++:skipRcPre
++
++@setlocal
++
++set ERROR_CODE=0
++
++@REM To isolate internal variables from possible post scripts, we use another setlocal
++@setlocal
++
++@REM ==== START VALIDATION ====
++if not "%JAVA_HOME%" == "" goto OkJHome
++
++echo.
++echo Error: JAVA_HOME not found in your environment. >&2
++echo Please set the JAVA_HOME variable in your environment to match the >&2
++echo location of your Java installation. >&2
++echo.
++goto error
++
++:OkJHome
++if exist "%JAVA_HOME%\bin\java.exe" goto init
++
++echo.
++echo Error: JAVA_HOME is set to an invalid directory. >&2
++echo JAVA_HOME = "%JAVA_HOME%" >&2
++echo Please set the JAVA_HOME variable in your environment to match the >&2
++echo location of your Java installation. >&2
++echo.
++goto error
++
++@REM ==== END VALIDATION ====
++
++:init
++
++@REM Find the project base dir, i.e. the directory that contains the folder ".mvn".
++@REM Fallback to current working directory if not found.
++
++set MAVEN_PROJECTBASEDIR=%MAVEN_BASEDIR%
++IF NOT "%MAVEN_PROJECTBASEDIR%"=="" goto endDetectBaseDir
++
++set EXEC_DIR=%CD%
++set WDIR=%EXEC_DIR%
++:findBaseDir
++IF EXIST "%WDIR%"\.mvn goto baseDirFound
++cd ..
++IF "%WDIR%"=="%CD%" goto baseDirNotFound
++set WDIR=%CD%
++goto findBaseDir
++
++:baseDirFound
++set MAVEN_PROJECTBASEDIR=%WDIR%
++cd "%EXEC_DIR%"
++goto endDetectBaseDir
++
++:baseDirNotFound
++set MAVEN_PROJECTBASEDIR=%EXEC_DIR%
++cd "%EXEC_DIR%"
++
++:endDetectBaseDir
++
++IF NOT EXIST "%MAVEN_PROJECTBASEDIR%\.mvn\jvm.config" goto endReadAdditionalConfig
++
++@setlocal EnableExtensions EnableDelayedExpansion
++for /F "usebackq delims=" %%a in ("%MAVEN_PROJECTBASEDIR%\.mvn\jvm.config") do set JVM_CONFIG_MAVEN_PROPS=!JVM_CONFIG_MAVEN_PROPS! %%a
++@endlocal & set JVM_CONFIG_MAVEN_PROPS=%JVM_CONFIG_MAVEN_PROPS%
++
++:endReadAdditionalConfig
++
++SET MAVEN_JAVA_EXE="%JAVA_HOME%\bin\java.exe"
++set WRAPPER_JAR="%MAVEN_PROJECTBASEDIR%\.mvn\wrapper\maven-wrapper.jar"
++set WRAPPER_LAUNCHER=org.apache.maven.wrapper.MavenWrapperMain
++
++set DOWNLOAD_URL="https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.1.0/maven-wrapper-3.1.0.jar"
++
++FOR /F "usebackq tokens=1,2 delims==" %%A IN ("%MAVEN_PROJECTBASEDIR%\.mvn\wrapper\maven-wrapper.properties") DO (
++    IF "%%A"=="wrapperUrl" SET DOWNLOAD_URL=%%B
++)
++
++@REM Extension to allow automatically downloading the maven-wrapper.jar from Maven-central
++@REM This allows using the maven wrapper in projects that prohibit checking in binary data.
++if exist %WRAPPER_JAR% (
++    if "%MVNW_VERBOSE%" == "true" (
++        echo Found %WRAPPER_JAR%
++    )
++) else (
++    if not "%MVNW_REPOURL%" == "" (
++        SET DOWNLOAD_URL="%MVNW_REPOURL%/org/apache/maven/wrapper/maven-wrapper/3.1.0/maven-wrapper-3.1.0.jar"
++    )
++    if "%MVNW_VERBOSE%" == "true" (
++        echo Couldn't find %WRAPPER_JAR%, downloading it ...
++        echo Downloading from: %DOWNLOAD_URL%
++    )
++
++    powershell -Command "&{"^
++		"$webclient = new-object System.Net.WebClient;"^
++		"if (-not ([string]::IsNullOrEmpty('%MVNW_USERNAME%') -and [string]::IsNullOrEmpty('%MVNW_PASSWORD%'))) {"^
++		"$webclient.Credentials = new-object System.Net.NetworkCredential('%MVNW_USERNAME%', '%MVNW_PASSWORD%');"^
++		"}"^
++		"[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $webclient.DownloadFile('%DOWNLOAD_URL%', '%WRAPPER_JAR%')"^
++		"}"
++    if "%MVNW_VERBOSE%" == "true" (
++        echo Finished downloading %WRAPPER_JAR%
++    )
++)
++@REM End of extension
++
++@REM Provide a "standardized" way to retrieve the CLI args that will
++@REM work with both Windows and non-Windows executions.
++set MAVEN_CMD_LINE_ARGS=%*
++
++%MAVEN_JAVA_EXE% ^
++  %JVM_CONFIG_MAVEN_PROPS% ^
++  %MAVEN_OPTS% ^
++  %MAVEN_DEBUG_OPTS% ^
++  -classpath %WRAPPER_JAR% ^
++  "-Dmaven.multiModuleProjectDirectory=%MAVEN_PROJECTBASEDIR%" ^
++  %WRAPPER_LAUNCHER% %MAVEN_CONFIG% %*
++if ERRORLEVEL 1 goto error
++goto end
++
++:error
++set ERROR_CODE=1
++
++:end
++@endlocal & set ERROR_CODE=%ERROR_CODE%
++
++if not "%MAVEN_SKIP_RC%"=="" goto skipRcPost
++@REM check for post script, once with legacy .bat ending and once with .cmd ending
++if exist "%USERPROFILE%\mavenrc_post.bat" call "%USERPROFILE%\mavenrc_post.bat"
++if exist "%USERPROFILE%\mavenrc_post.cmd" call "%USERPROFILE%\mavenrc_post.cmd"
++:skipRcPost
++
++@REM pause the script if MAVEN_BATCH_PAUSE is set to 'on'
++if "%MAVEN_BATCH_PAUSE%"=="on" pause
++
++if "%MAVEN_TERMINATE_CMD%"=="on" exit %ERROR_CODE%
++
++cmd /C exit /B %ERROR_CODE%
+Index: src/main/java/Java-8-stream-api/.gitignore
+===================================================================
+diff --git a/src/main/java/Java-8-stream-api/.gitignore b/src/main/java/Java-8-stream-api/.gitignore
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Java-8-stream-api/.gitignore	
+@@ -0,0 +1,38 @@
++target/
++!.mvn/wrapper/maven-wrapper.jar
++!**/src/main/**/target/
++!**/src/test/**/target/
++
++### IntelliJ IDEA ###
++.idea/modules.xml
++.idea/jarRepositories.xml
++.idea/compiler.xml
++.idea/libraries/
++*.iws
++*.iml
++*.ipr
++
++### Eclipse ###
++.apt_generated
++.classpath
++.factorypath
++.project
++.settings
++.springBeans
++.sts4-cache
++
++### NetBeans ###
++/nbproject/private/
++/nbbuild/
++/dist/
++/nbdist/
++/.nb-gradle/
++build/
++!**/src/main/**/build/
++!**/src/test/**/build/
++
++### VS Code ###
++.vscode/
++
++### Mac OS ###
++.DS_Store
+\ No newline at end of file
+Index: src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/First/streamApi.java
+===================================================================
+diff --git a/src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/First/streamApi.java b/src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/First/streamApi.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/First/streamApi.java	
+@@ -0,0 +1,11 @@
++package com.example.java8streamapi.First;
++
++public class streamApi {
++    public static void main(String[] args) {
++
++    }
++
++}
++class Product{
++
++}
+\ No newline at end of file
+Index: src/main/java/Java-8-stream-api/src/main/java/module-info.java
+===================================================================
+diff --git a/src/main/java/Java-8-stream-api/src/main/java/module-info.java b/src/main/java/Java-8-stream-api/src/main/java/module-info.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Java-8-stream-api/src/main/java/module-info.java	
+@@ -0,0 +1,8 @@
++module com.example.java8streamapi {
++    requires javafx.controls;
++    requires javafx.fxml;
++
++
++    opens com.example.java8streamapi to javafx.fxml;
++    exports com.example.java8streamapi;
++}
+\ No newline at end of file
+Index: src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/HelloController.java
+===================================================================
+diff --git a/src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/HelloController.java b/src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/HelloController.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/HelloController.java	
+@@ -0,0 +1,14 @@
++package com.example.java8streamapi;
++
++import javafx.fxml.FXML;
++import javafx.scene.control.Label;
++
++public class HelloController {
++    @FXML
++    private Label welcomeText;
++
++    @FXML
++    protected void onHelloButtonClick() {
++        welcomeText.setText("Welcome to JavaFX Application!");
++    }
++}
+\ No newline at end of file
+Index: src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/HelloApplication.java
+===================================================================
+diff --git a/src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/HelloApplication.java b/src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/HelloApplication.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/HelloApplication.java	
+@@ -0,0 +1,23 @@
++package com.example.java8streamapi;
++
++import javafx.application.Application;
++import javafx.fxml.FXMLLoader;
++import javafx.scene.Scene;
++import javafx.stage.Stage;
++
++import java.io.IOException;
++
++public class HelloApplication extends Application {
++    @Override
++    public void start(Stage stage) throws IOException {
++        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
++        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
++        stage.setTitle("Hello!");
++        stage.setScene(scene);
++        stage.show();
++    }
++
++    public static void main(String[] args) {
++        launch();
++    }
++}
+\ No newline at end of file
+Index: src/main/java/StreamApiSorting/Employee.java
+===================================================================
+diff --git a/src/main/java/StreamApiSorting/Employee.java b/src/main/java/StreamApiSorting/Employee.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/StreamApiSorting/Employee.java	
+@@ -0,0 +1,57 @@
++package StreamApiSorting;
++
++public class Employee {
++    private int id;
++    private String name;
++    private int age;
++    private double salary;
++
++    public Employee(int id, String name, int age, double salary) {
++        this.id = id;
++        this.name = name;
++        this.age = age;
++        this.salary = salary;
++    }
++
++    public int getId() {
++        return id;
++    }
++
++    public void setId(int id) {
++        this.id = id;
++    }
++
++    public String getName() {
++        return name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public int getAge() {
++        return age;
++    }
++
++    public void setAge(int age) {
++        this.age = age;
++    }
++
++    public double getSalary() {
++        return salary;
++    }
++
++    public void setSalary(double salary) {
++        this.salary = salary;
++    }
++
++    @Override
++    public String toString() {
++        return "Employee{" +
++                "id=" + id +
++                ", name='" + name + '\'' +
++                ", age=" + age +
++                ", salary=" + salary +
++                '}';
++    }
++}
+Index: src/main/java/Java-8-stream-api/src/main/resources/com/example/java8streamapi/hello-view.fxml
+===================================================================
+diff --git a/src/main/java/Java-8-stream-api/src/main/resources/com/example/java8streamapi/hello-view.fxml b/src/main/java/Java-8-stream-api/src/main/resources/com/example/java8streamapi/hello-view.fxml
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Java-8-stream-api/src/main/resources/com/example/java8streamapi/hello-view.fxml	
+@@ -0,0 +1,16 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import javafx.geometry.Insets?>
++<?import javafx.scene.control.Label?>
++<?import javafx.scene.layout.VBox?>
++
++<?import javafx.scene.control.Button?>
++<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
++      fx:controller="com.example.java8streamapi.HelloController">
++    <padding>
++        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
++    </padding>
++
++    <Label fx:id="welcomeText"/>
++    <Button text="Hello!" onAction="#onHelloButtonClick"/>
++</VBox>
+Index: src/main/java/StreamApiSorting/StreameListSorting.java
+===================================================================
+diff --git a/src/main/java/StreamApiSorting/StreameListSorting.java b/src/main/java/StreamApiSorting/StreameListSorting.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/StreamApiSorting/StreameListSorting.java	
+@@ -0,0 +1,69 @@
++package StreamApiSorting;
++
++import java.util.ArrayList;
++import java.util.Comparator;
++import java.util.List;
++import java.util.stream.Collectors;
++
++//import static java.util.stream.Nodes.collect;
++
++public class StreameListSorting {
++    public static void main(String[] args) {
++
++        List<String> fruits = new ArrayList<String>();
++        fruits.add("Banana");
++        fruits.add("Apple");
++        fruits.add("Orange");
++        fruits.add("Mango");
++
++       List<String> sortedList=fruits.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
++        System.out.println(sortedList);
++
++       List<String> sortedList1=fruits.stream().sorted((o1, o2) -> o1.compareTo(o2)).collect(Collectors.toList());
++        System.out.println(sortedList1);
++
++        List<String> sortedList2 =fruits.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
++        System.out.println(sortedList2);
++
++       List<String> sortedList3=fruits.stream().sorted((o1, o2) -> o1.compareTo(o2)).collect(Collectors.toList());
++        System.out.println(sortedList3);
++
++        //sort employee by salary in ascending order
++
++        List<Employee> employees = new ArrayList<Employee>();
++        employees.add(new Employee(10,"Akhil",25,300000));
++        employees.add(new Employee(20,"Santosh",29,500000));
++        employees.add(new Employee(30,"Sanjay",27,100000));
++        employees.add(new Employee(40,"Pramod",30,400000));
++
++      List<Employee> employeesSortedList =  employees.stream().sorted((o1,o2) -> (int) (o2.getSalary()-o1.getSalary())
++      ).collect(Collectors.toList());
++
++        List<Employee> employeesSortedList1 =  employees.stream().sorted(Comparator.comparingDouble(Employee::getSalary)
++        ).collect(Collectors.toList());
++
++        List<Employee> employeesSortedList2 =  employees.stream().sorted(Comparator.comparingDouble(Employee::getSalary)
++                .reversed()).collect(Collectors.toList());
++
++        List<Employee> employeesSortedList3 =  employees.stream().sorted((o1,o2) -> (int) (o1.getAge()-o2.getAge())
++        ).collect(Collectors.toList());
++
++        List<Employee> employeesSortedList4 =  employees.stream().sorted(Comparator.comparingInt(Employee::getAge)
++        ).collect(Collectors.toList());
++
++        List<Employee> employeesSortedList5 =  employees.stream().sorted(Comparator.comparingInt(Employee::getAge)
++                .reversed()).collect(Collectors.toList());
++
++        List<Employee> employeesSortedList6 =  employees.stream().sorted(Comparator.comparing(Employee::getName)
++        ).collect(Collectors.toList());
++
++
++        System.out.println(employeesSortedList);
++        System.out.println(employeesSortedList2);
++        System.out.println(employeesSortedList3);
++        System.out.println(employeesSortedList4);
++        System.out.println(employeesSortedList5);
++        System.out.println(employeesSortedList6);
++
++    }
++}
+Index: src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/First/CreateStreamObjects.java
+===================================================================
+diff --git a/src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/First/CreateStreamObjects.java b/src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/First/CreateStreamObjects.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/First/CreateStreamObjects.java	
+@@ -0,0 +1,31 @@
++package com.example.java8streamapi.First;
++
++import java.util.*;
++import java.util.stream.Stream;
++
++public class CreateStreamObjects {
++    public static void main(String[] args) {
++
++//        //create a stream
++//        Stream<String> stream = Stream.of("a","b","c");
++//        stream.forEach(System.out::println);
++
++        // create a stream from sources
++//        Collection<String> collection = Arrays.asList("Java","J2EE","Spring","Hibernate");
++//        Stream<String> stream2=collection.stream();
++//        stream2.forEach(System.out::println);
++
++        List<String> list = Arrays.asList("Java","J2EE","Spring","Hibernate");
++        Stream<String> stream3=list.stream();
++        stream3.forEach(System.out::println);
++
++        Set<String> set = new HashSet<>(list);
++        Stream<String> stream4=set.stream();
++        stream4.forEach(System.out::println);
++
++        String[] strArray = {"a","b","c"};
++        Stream<String> stream5 = Arrays.stream(strArray);
++        stream5.forEach(System.out::println);
++
++    }
++}
+Index: src/main/java/StreamMap/StreamMapCollectExample.java
+===================================================================
+diff --git a/src/main/java/StreamMap/StreamMapCollectExample.java b/src/main/java/StreamMap/StreamMapCollectExample.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/StreamMap/StreamMapCollectExample.java	
+@@ -0,0 +1,131 @@
++package StreamMap;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.function.Function;
++
++public class StreamMapCollectExample {
++    public static void main(String[] args) {
++        List<User> users = new ArrayList<User>();
++        users.add(new User(1,"Akhil","Secrete","akhil123@gmail.com"));
++        users.add(new User(2,"Bobby","Secrete@","Bobby@gmail.com"));
++        users.add(new User(3,"Catherin","Secrete@!","Catherin123@gmail.com"));
++        users.add(new User(4,"David","Secrete@#","David23f@gmail.com"));
++
++        List<UserDTO> usersDTO = new ArrayList<UserDTO>();
++        for(User user : users){
++            usersDTO.add(new UserDTO(user.getId(),user.getUserName(),user.getEmail()));
++        }
++        for(UserDTO dto :usersDTO){
++            System.out.println(dto);
++        }
++        users.stream().map(new Function<User,UserDTO>() {
++            @Override
++            public UserDTO apply(User user) {
++                return new UserDTO(user.getId(), user.getUserName(), user.getEmail());
++            }
++
++        });
++    }
++}
++class UserDTO{
++    private int id;
++    private String userName;
++    private String email;
++
++    public UserDTO(int id, String userName, String email) {
++        this.id = id;
++        this.userName = userName;
++        this.email = email;
++    }
++
++    public int getId() {
++        return id;
++    }
++
++    public void setId(int id) {
++        this.id = id;
++    }
++
++    public String getUserName() {
++        return userName;
++    }
++
++    public void setUserName(String userName) {
++        this.userName = userName;
++    }
++
++    public String getEmail() {
++        return email;
++    }
++
++    public void setEmail(String email) {
++        this.email = email;
++    }
++
++    @Override
++    public String toString() {
++        return "User{" +
++                "id=" + id +
++                ", userName='" + userName + '\'' +
++                ", email='" + email + '\'' +
++                '}';
++    }
++
++}
++
++class User{
++    private int id;
++    private String userName;
++    private String password;
++    private String email;
++
++    public User(int id, String userName, String password, String email) {
++        this.id = id;
++        this.userName = userName;
++        this.password = password;
++        this.email = email;
++    }
++
++    public int getId() {
++        return id;
++    }
++
++    public void setId(int id) {
++        this.id = id;
++    }
++
++    public String getUserName() {
++        return userName;
++    }
++
++    public void setUserName(String userName) {
++        this.userName = userName;
++    }
++
++    public String getPassword() {
++        return password;
++    }
++
++    public void setPassword(String password) {
++        this.password = password;
++    }
++
++    public String getEmail() {
++        return email;
++    }
++
++    public void setEmail(String email) {
++        this.email = email;
++    }
++
++    @Override
++    public String toString() {
++        return "User{" +
++                "id=" + id +
++                ", userName='" + userName + '\'' +
++                ", password='" + password + '\'' +
++                ", email='" + email + '\'' +
++                '}';
++    }
++}
+\ No newline at end of file
+Index: src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/First/StremFilterExample.java
+===================================================================
+diff --git a/src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/First/StremFilterExample.java b/src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/First/StremFilterExample.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Java-8-stream-api/src/main/java/com/example/java8streamapi/First/StremFilterExample.java	
+@@ -0,0 +1,95 @@
++package com.example.java8streamapi.First;
++
++import java.util.ArrayList;
++import java.util.List;
++
++//import static sun.nio.ch.DatagramChannelImpl.AbstractSelectableChannels.forEach;
++
++public class StremFilterExample {
++    public static void main(String[] args) {
++
++        List<Product2> list = new ArrayList<Product2>();
++        for(Product2 product : getProducts()){
++            if(product.getPrice() > 25000f ){
++                list.add(product);
++            }
++        }
++
++        for(Product2 product: list){
++            System.out.println(product);
++        }
++        System.out.println("**************************************");
++        // using Stream API
++        getProducts()
++                .stream().filter((product) -> product.getPrice() > 25000f)
++
++        .forEach(System.out::println);
++
++
++//        List<Product> list = new ArrayList<Product>();
++//        for (Product product : getProducts()){
++//            if (product.getPrice() > 30000f){
++//                list.add(product);
++//            }
++  }
++//        for(Product product :list){
++//            System.out.println(product);
++//        }
++//    }
++    private static List<Product2> getProducts(){
++        List<Product2> productsList = new ArrayList<Product2>();
++        productsList.add(new Product2(1,"HP Laptop",25000f));
++        productsList.add(new Product2(2,"Lenovo Laptop",35000f));
++        productsList.add(new Product2(3,"MacBook Laptop",75000f));
++        productsList.add(new Product2(4,"Dell Laptop",55000f));
++        return productsList;
++
++
++    }
++
++}
++
++class Product2{
++    private int id;
++    private String name;
++    private float price;
++
++    public Product2(int id, String name, float price) {
++        this.id = id;
++        this.name = name;
++        this.price = price;
++    }
++
++    public int getId() {
++        return id;
++    }
++
++    public void setId(int id) {
++        this.id = id;
++    }
++
++    public String getName() {
++        return name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public float getPrice() {
++        return price;
++    }
++
++    public void setPrice(float price) {
++        this.price = price;
++    }
++
++    @Override
++    public String toString() {
++        return "Product2{" +
++                "id=" + id +
++                ", name='" + name + '\'' +
++                ", price=" + price +
++                '}';
++    }
++}
